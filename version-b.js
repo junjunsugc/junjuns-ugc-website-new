@@ -124,7 +124,7 @@ const list = filter === 'all'
               class="portfolio-video"
               controls
               playsinline
-              preload="none"
+              preload="metadata"
               ${cover ? `poster="${escapeHTML(media(cover))}"` : ''}
             >
               <source
@@ -178,41 +178,41 @@ const list = filter === 'all'
       }).join('')
     : '<p>No projects in this category yet.</p>';
 
-  // Automatically detect video orientation
+  
+  // Detect orientation and show a preview at 5 seconds
   document.querySelectorAll('.portfolio-video').forEach(video => {
+    let previewReady = false;
 
-    const detectOrientation = () => {
-      if (!video.videoWidth || !video.videoHeight) return;
+    video.addEventListener('loadedmetadata', () => {
+      if (video.videoWidth && video.videoHeight) {
+        video.dataset.orientation =
+          video.videoWidth > video.videoHeight
+            ? 'horizontal'
+            : 'vertical';
+      }
 
-      video.dataset.orientation =
-        video.videoWidth > video.videoHeight
-          ? 'horizontal'
-          : 'vertical';
-    };
-
-    
-
-video.addEventListener('loadedmetadata', detectOrientation);
-
-
-
-    if (video.readyState >= 1) {
-      detectOrientation();
-    }
-  });
-}
-
-
-document.querySelectorAll('.filter').forEach(button => {
-  button.onclick = () => {
-    filter = button.dataset.filter;
-
-    document.querySelectorAll('.filter').forEach(b => {
-      b.classList.toggle('active', b === button);
+      // Seek to 5 seconds to display the preview frame
+      if (video.duration > 5) {
+        video.currentTime = 5;
+      }
     });
 
-    render();
-  };
-});
+    video.addEventListener('seeked', () => {
+      if (video.currentTime >= 4.9 && !previewReady) {
+        previewReady = true;
+      }
+    });
 
-load();
+    // Reset to the beginning before playback
+    video.addEventListener('play', () => {
+      if (previewReady && video.currentTime >= 4.9) {
+        video.pause();
+        video.currentTime = 0;
+
+        video.addEventListener('seeked', function startFromZero() {
+          video.removeEventListener('seeked', startFromZero);
+          video.play().catch(console.error);
+        });
+      }
+    }, { once: true });
+  });
