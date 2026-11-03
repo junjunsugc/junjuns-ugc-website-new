@@ -107,9 +107,8 @@ function render() {
 
   
 const list = filter === 'all'
-  ? projects.filter(p => p.featured === true).slice(0, 3)
+  ? projects.filter(p => p.featured === true)
   : projects.filter(p => p.category === filter);
-
 
   $('#projects').innerHTML = list.length
     ? list.map(p => {
