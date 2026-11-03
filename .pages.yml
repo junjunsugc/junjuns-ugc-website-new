@@ -49,7 +49,9 @@ content:
           values:
             - name: Beauty & Skincare
               value: beauty
-            - name: Cosplay & Fashion
+            - name: Cosplay & Creative
+              value: cosplay
+            - name: Fashion & Styling
               value: fashion
             - name: Travel, Lifestyle & Food
               value: lifestyle
