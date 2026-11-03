@@ -324,15 +324,55 @@ if (quoteForm) {
     return { videos, photos };
   }
 
+ 
   quoteForm.addEventListener('input', calculateQuote);
   quoteForm.addEventListener('change', calculateQuote);
 
-  quoteForm.addEventListener('submit', event => {
+  quoteForm.addEventListener('submit', async event => {
+    event.preventDefault();
+
     const { videos, photos } = calculateQuote();
 
     if (videos === 0 && photos === 0) {
-      event.preventDefault();
       alert('Please select at least one video or photo.');
+      return;
+    }
+
+    const button = quoteForm.querySelector(
+      'button[type="submit"]'
+    );
+
+    button.disabled = true;
+    button.textContent = 'Sending your request...';
+
+    try {
+      const formData = new FormData(quoteForm);
+      formData.set('form-name', 'ugc-quote');
+
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams(formData).toString()
+      });
+
+      if (!response.ok) {
+        throw new Error('Submission failed');
+      }
+
+      alert('Thank you! ♡ Your quote request has been sent!');
+
+      quoteForm.reset();
+      calculateQuote();
+
+    } catch (error) {
+      console.error(error);
+      alert('Sorry, something went wrong. Please try again.');
+
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Request a Custom Quote ♡';
     }
   });
 
