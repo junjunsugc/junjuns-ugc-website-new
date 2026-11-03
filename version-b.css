@@ -289,3 +289,11 @@
   box-shadow: 2px 2px 0 #34313a;
   cursor: pointer;
 }
+
+/* BOLDER RETRO BUTTON TEXT */
+.contact-content a.contact-btn {
+  font-family: Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.4px;
+}
