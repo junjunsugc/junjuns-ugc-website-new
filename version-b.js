@@ -72,7 +72,9 @@ async function load() {
       }
 
       if (s.email) {
-        $('#emailButton').href = 'mailto:' + s.email;
+       
+$('#emailButton').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(s.email) + '&su=UGC%20Collaboration%20Inquiry';
+
       }
 
       if (s.instagram) {
