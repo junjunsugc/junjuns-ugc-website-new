@@ -257,11 +257,13 @@ if (quoteForm) {
     const revisions = number('quoteRevisions', 20);
 
     // Video bundle pricing
+  
     const videoCost =
-      Math.floor(videos / 5) * 425 +
+      Math.floor(videos / 5) * 550 +
       (videos % 5 >= 3
-        ? 270 + (videos % 5 - 3) * 100
-        : (videos % 5) * 100);
+        ? 350 + (videos % 5 - 3) * 120
+        : (videos % 5) * 120);
+
 
     // Photo bundle pricing
     const photoRemainder = photos % 10;
