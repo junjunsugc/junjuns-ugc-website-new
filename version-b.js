@@ -178,41 +178,62 @@ const list = filter === 'all'
       }).join('')
     : '<p>No projects in this category yet.</p>';
 
-  
-  // Detect orientation and show a preview at 5 seconds
+  // Detect orientation and generate a 5-second preview
   document.querySelectorAll('.portfolio-video').forEach(video => {
     let previewReady = false;
+    let restarting = false;
+
+    const detectOrientation = () => {
+      if (!video.videoWidth || !video.videoHeight) return;
+
+      video.dataset.orientation =
+        video.videoWidth > video.videoHeight
+          ? 'horizontal'
+          : 'vertical';
+    };
 
     video.addEventListener('loadedmetadata', () => {
-      if (video.videoWidth && video.videoHeight) {
-        video.dataset.orientation =
-          video.videoWidth > video.videoHeight
-            ? 'horizontal'
-            : 'vertical';
-      }
+      detectOrientation();
 
-      // Seek to 5 seconds to display the preview frame
-      if (video.duration > 5) {
+      if (Number.isFinite(video.duration) && video.duration > 5) {
         video.currentTime = 5;
       }
     });
 
+    video.addEventListener('loadeddata', detectOrientation);
+    video.addEventListener('resize', detectOrientation);
+
     video.addEventListener('seeked', () => {
-      if (video.currentTime >= 4.9 && !previewReady) {
+      if (!restarting && video.currentTime >= 4.9) {
         previewReady = true;
       }
     });
 
-    // Reset to the beginning before playback
-    video.addEventListener('play', () => {
-      if (previewReady && video.currentTime >= 4.9) {
-        video.pause();
+    video.addEventListener('play', async () => {
+      if (!previewReady || restarting) return;
+
+      previewReady = false;
+      restarting = true;
+      video.pause();
+
+      try {
         video.currentTime = 0;
 
-        video.addEventListener('seeked', function startFromZero() {
-          video.removeEventListener('seeked', startFromZero);
-          video.play().catch(console.error);
-        });
+        if (video.seeking) {
+          await new Promise(resolve => {
+            video.addEventListener('seeked', resolve, { once: true });
+          });
+        }
+
+        await video.play();
+      } catch (error) {
+        console.error('Playback error:', error);
+      } finally {
+        restarting = false;
       }
-    }, { once: true });
+    });
+
+    if (video.readyState >= 1) {
+      detectOrientation();
+    }
   });
