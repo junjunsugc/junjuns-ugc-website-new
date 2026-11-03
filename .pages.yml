@@ -46,12 +46,13 @@ content:
         type: select
         required: true
         options:
-          - label: Beauty & Skincare
-            value: beauty
-          - label: Cosplay & Fashion
-            value: fashion
-          - label: Travel, Lifestyle & Food
-            value: lifestyle
+          values:
+            - name: Beauty & Skincare
+              value: beauty
+            - name: Cosplay & Fashion
+              value: fashion
+            - name: Travel, Lifestyle & Food
+              value: lifestyle
       - name: description
         label: Description
         type: text
