@@ -75,3 +75,139 @@
     justify-self: start;
   }
 }
+
+
+/* Junjuns UGC Quote Builder */
+
+.quote-section {
+  max-width: 1120px;
+  margin: 70px auto;
+  padding: 35px 22px;
+  color: #49383f;
+}
+
+.quote-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.quote-eyebrow {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #a47a8c;
+}
+
+.quote-heading h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  margin: 12px 0;
+}
+
+.quote-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.quote-fields,
+.quote-summary {
+  background: #fffaf7;
+  border: 1px solid #ead9df;
+  border-radius: 18px;
+  padding: 28px;
+}
+
+.quote-fields h3,
+.quote-summary h3 {
+  margin: 22px 0 16px;
+  font-size: 19px;
+}
+
+.quote-fields h3:first-child,
+.quote-summary h3:first-child {
+  margin-top: 0;
+}
+
+.quote-section label {
+  display: block;
+  font-size: 13px;
+  margin: 15px 0 7px;
+}
+
+.quote-section input:not([type="checkbox"]),
+.quote-section select,
+.quote-section textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #decbd2;
+  border-radius: 9px;
+  background: white;
+  color: #49383f;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.quote-section .quote-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.quote-check input {
+  accent-color: #ae8296;
+}
+
+.quote-summary > p:not(.quote-note) {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.quote-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e6d5dc;
+  padding: 20px 0;
+  margin-top: 20px;
+}
+
+.quote-total strong {
+  font-size: 29px;
+  color: #a46d87;
+}
+
+.quote-note {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #88757e;
+}
+
+.quote-submit {
+  width: 100%;
+  background: #ad8095;
+  color: white;
+  border: 0;
+  border-radius: 30px;
+  padding: 15px;
+  margin-top: 20px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.quote-submit:hover {
+  background: #94677e;
+}
+
+@media (max-width: 750px) {
+  .quote-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-fields,
+  .quote-summary {
+    padding: 20px;
+  }
+}
