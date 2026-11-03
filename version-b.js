@@ -173,9 +173,30 @@ function render() {
             </div>
           </article>
         `;
+      
       }).join('')
     : '<p>No projects in this category yet.</p>';
+
+  // Automatically detect video orientation
+  document.querySelectorAll('.portfolio-video').forEach(video => {
+
+    const detectOrientation = () => {
+      if (!video.videoWidth || !video.videoHeight) return;
+
+      video.dataset.orientation =
+        video.videoWidth > video.videoHeight
+          ? 'horizontal'
+          : 'vertical';
+    };
+
+    video.addEventListener('loadedmetadata', detectOrientation);
+
+    if (video.readyState >= 1) {
+      detectOrientation();
+    }
+  });
 }
+
 
 document.querySelectorAll('.filter').forEach(button => {
   button.onclick = () => {
