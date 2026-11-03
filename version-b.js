@@ -235,3 +235,104 @@ document.querySelectorAll('.filter').forEach(button => {
 });
 
 load();
+
+
+/* Junjuns UGC Quote Calculator */
+
+const quoteForm = document.querySelector('#ugcQuoteForm');
+
+if (quoteForm) {
+  const q = id => document.getElementById(id);
+  const money = n => '€' + n.toLocaleString('en-IE');
+
+  const number = (id, max) => {
+    const value = Math.floor(Number(q(id).value) || 0);
+    return Math.min(max, Math.max(0, value));
+  };
+
+  function calculateQuote() {
+    const videos = number('quoteVideos', 20);
+    const photos = number('quotePhotos', 30);
+    const hooks = number('quoteHooks', 20);
+    const revisions = number('quoteRevisions', 20);
+
+    // Video bundle pricing
+    const videoCost =
+      Math.floor(videos / 5) * 425 +
+      (videos % 5 >= 3
+        ? 270 + (videos % 5 - 3) * 100
+        : (videos % 5) * 100);
+
+    // Photo bundle pricing
+    const photoRemainder = photos % 10;
+    const photoCost =
+      Math.floor(photos / 10) * 160 +
+      (photoRemainder >= 5
+        ? 90 + (photoRemainder - 5) * 20
+        : photoRemainder * 20);
+
+    const extended = q('quoteLength').value === 'extended';
+    const production = videoCost + photoCost +
+      (extended ? videos * 40 : 0);
+
+    const usage = Number(q('quoteUsage').value);
+    const license = Math.round(production * usage);
+
+    const extras =
+      hooks * 25 +
+      revisions * 20 +
+      (q('quoteRaw').checked ? 50 : 0) +
+      (q('quoteSubtitles').checked ? videos * 15 : 0);
+
+    const rush = q('quoteRush').checked
+      ? Math.round((production + license + extras) * 0.3)
+      : 0;
+
+    const total = production + license + extras + rush;
+
+    q('qProduction').textContent = money(production);
+    q('qLicense').textContent = money(license);
+    q('qExtras').textContent = money(extras);
+    q('qRush').textContent = money(rush);
+    q('qTotal').textContent = money(total);
+
+    const usageText =
+      q('quoteUsage').selectedOptions[0].textContent;
+
+    const details = [
+      `Videos: ${videos}`,
+      `Photos: ${photos}`,
+      `Video length: ${q('quoteLength').selectedOptions[0].textContent}`,
+      `Usage: ${usageText}`,
+      `Additional hooks: ${hooks}`,
+      `Extra revisions: ${revisions}`,
+      `Raw footage: ${q('quoteRaw').checked ? 'Yes' : 'No'}`,
+      `Subtitles: ${q('quoteSubtitles').checked ? 'Yes' : 'No'}`,
+      `Rush delivery: ${q('quoteRush').checked ? 'Yes' : 'No'}`,
+      `Exclusivity: ${q('quoteExclusive').checked ? 'Custom quote requested' : 'No'}`,
+      `Creator ads: ${q('quoteCreatorAds').checked ? 'Custom quote requested' : 'No'}`
+    ].join('\n');
+
+    q('quoteDetails').value = details;
+    q('quoteAmount').value = money(total) +
+      (q('quoteExclusive').checked || q('quoteCreatorAds').checked
+        ? ' + custom quoted fees'
+        : '');
+
+    return { videos, photos };
+  }
+
+  quoteForm.addEventListener('input', calculateQuote);
+  quoteForm.addEventListener('change', calculateQuote);
+
+  quoteForm.addEventListener('submit', event => {
+    const { videos, photos } = calculateQuote();
+
+    if (videos === 0 && photos === 0) {
+      event.preventDefault();
+      alert('Please select at least one video or photo.');
+    }
+  });
+
+  calculateQuote();
+}
