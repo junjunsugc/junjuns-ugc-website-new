@@ -13,6 +13,135 @@
 <div class="projects" id="projects"><p>Loading projects…</p></div><p class="fineprint">Portfolio samples are personal creative work unless stated otherwise.</p></div></section>
 <section class="section services" id="services"><div class="shell"><div class="heading"><span class="eyebrow">03 / WHAT I CREATE</span><h2>Creative services<span class="dot">.</span></h2><p>Made for brands that want visuals with character.</p></div><div class="service-grid"><article><span>▣ VIDEO</span><h3>UGC & video content</h3><p>Product demos, reviews, GRWM, skincare routines, unboxing, tutorials, lifestyle B-roll and creative transitions.</p></article><article><span>✧ PHOTO</span><h3>Product photography</h3><p>Styled flat lays, beauty textures, in-use product shots, fashion photography and lifestyle compositions.</p></article><article><span>♡ STORY</span><h3>Creative storytelling</h3><p>Concept development, visual direction, character-inspired looks, engaging hooks and thoughtful editing.</p></article></div></div></section>
 <section class="section rates" id="rates"><div class="shell"><div class="heading"><span class="eyebrow">04 / INVEST IN CONTENT</span><h2>Packages & <em>rates.</em></h2><p>Illustrative starting prices. Every project can be tailored to your brief.</p></div><div class="rate-grid"><article><span>THE SINGLE</span><h3>1 edited UGC video</h3><strong>€150</strong><p>Concept, filming and editing of one short-form video.</p></article><article class="featured"><span>THE TRIO ✿</span><h3>3 edited UGC videos</h3><strong>€400</strong><p>Three videos with multiple angles, hooks or creative approaches.</p></article><article><span>THE COLLECTION</span><h3>5 edited UGC videos</h3><strong>€650</strong><p>A coordinated collection of short-form video assets.</p></article></div><p class="fineprint">Usage rights, ad licensing, revisions, raw footage, and photography are quoted separately as appropriate.</p></div></section>
+  
+<section id="quote-builder" class="quote-section">
+  <div class="quote-heading">
+    <span class="quote-eyebrow">LET'S CREATE TOGETHER ♡</span>
+    <h2>Build Your UGC Package</h2>
+    <p>Customize your content and get an instant estimate.</p>
+  </div>
+
+  <form
+    id="ugcQuoteForm"
+    name="ugc-quote"
+    method="POST"
+    data-netlify="true"
+  >
+    <input type="hidden" name="form-name" value="ugc-quote">
+
+    <div class="quote-grid">
+      <div class="quote-fields">
+
+        <h3>01 / Content Creation</h3>
+
+        <label for="quoteVideos">Number of UGC Videos</label>
+        <input id="quoteVideos" type="number" min="0" max="20" value="1">
+
+        <label for="quotePhotos">Number of Edited Photos</label>
+        <input id="quotePhotos" type="number" min="0" max="30" value="0">
+
+        <label for="quoteLength">Video Length</label>
+        <select id="quoteLength">
+          <option value="standard">15–30 seconds (included)</option>
+          <option value="extended">30–60 seconds (+€40/video)</option>
+        </select>
+
+        <h3>02 / Usage Rights</h3>
+
+        <label for="quoteUsage">Advertising License</label>
+        <select id="quoteUsage">
+          <option value="0">Organic use only</option>
+          <option value="0.3">Paid ads — 30 days (+30%)</option>
+          <option value="0.6">Paid ads — 3 months (+60%)</option>
+          <option value="1">Paid ads — 6 months (+100%)</option>
+          <option value="1.5">Paid ads — 12 months (+150%)</option>
+        </select>
+
+        <h3>03 / Optional Extras</h3>
+
+        <label for="quoteHooks">Additional Hooks (€25 each)</label>
+        <input id="quoteHooks" type="number" min="0" max="20" value="0">
+
+        <label for="quoteRevisions">Extra Revisions (€20 each)</label>
+        <input id="quoteRevisions" type="number" min="0" max="20" value="0">
+
+        <label class="quote-check">
+          <input id="quoteRaw" type="checkbox">
+          Raw footage (+€50)
+        </label>
+
+        <label class="quote-check">
+          <input id="quoteSubtitles" type="checkbox">
+          Subtitles (+€15/video)
+        </label>
+
+        <label class="quote-check">
+          <input id="quoteRush" type="checkbox">
+          Rush delivery (+30%)
+        </label>
+
+        <label class="quote-check">
+          <input id="quoteExclusive" type="checkbox">
+          Brand exclusivity (custom quote)
+        </label>
+
+        <label class="quote-check">
+          <input id="quoteCreatorAds" type="checkbox">
+          Spark Ads / Partnership Ads (custom quote)
+        </label>
+      </div>
+
+      <div class="quote-summary">
+        <h3>Your Estimated Quote</h3>
+        <p>Content creation <strong id="qProduction">€100</strong></p>
+        <p>Usage rights <strong id="qLicense">€0</strong></p>
+        <p>Extras <strong id="qExtras">€0</strong></p>
+        <p>Rush delivery <strong id="qRush">€0</strong></p>
+
+        <div class="quote-total">
+          <span>Estimated Total</span>
+          <strong id="qTotal">€100</strong>
+        </div>
+
+        <p class="quote-note">
+          Starting rates only. Final quotations may vary based
+          on usage rights, creative requirements, travel,
+          licensing and additional services.
+          Applicable taxes are not included.
+        </p>
+
+        <h3>Request a Custom Quote ♡</h3>
+
+        <label for="quoteName">Your Name / Brand</label>
+        <input id="quoteName" name="name" required>
+
+        <label for="quoteEmail">Email Address</label>
+        <input id="quoteEmail" name="email" type="email" required>
+
+        <label for="quoteMessage">Tell me about your project</label>
+        <textarea
+          id="quoteMessage"
+          name="message"
+          rows="4"
+          placeholder="Brand, products, campaign goals, deadlines..."
+        ></textarea>
+
+        <input id="quoteDetails" type="hidden" name="package_details">
+        <input id="quoteAmount" type="hidden" name="estimated_total">
+
+        <button class="quote-submit" type="submit">
+          Request a Custom Quote ♡
+        </button>
+
+        <p class="quote-note">
+          This is a non-binding estimate. Your request
+          will be reviewed before a final quote is confirmed.
+        </p>
+      </div>
+    </div>
+  </form>
+</section>
+
 <section class="section contact" id="contact"><div class="shell"><div class="heading"><span class="eyebrow">05 / LET'S COLLABORATE</span><h2>Have a story in mind<span class="dot">?</span></h2><p>Let's make something beautiful, useful and real.</p></div><div class="contact-window"><div class="titlebar blue"><span>✉ new_message.exe</span><span>— &nbsp; □ &nbsp; ×</span></div><div class="contact-content"><div><span class="label">TO: YOUR NEXT CREATIVE PARTNER</span><h3>Send a little hello ♡</h3><p>Tell me about your brand, product, timeline and the content you have in mind.</p><a class="btn" id="emailButton" href="mailto:">EMAIL ME ↗</a><a class="textlink" id="instagramLink" href="https://www.instagram.com/junjuns.ugc/" target="_blank" rel="noopener">Instagram @junjuns.ugc ↗</a></div><div class="envelope">✉<span>LET'S MAKE<br>SOMETHING GOOD</span></div></div></div></div></section></main>
 <footer><div class="shell"><b>jun<span>juns</span>.ugc ✿</b><p>Munich, Germany · Beauty, cosplay, fashion & lifestyle UGC</p><small>© 2026 Junjuns UGC · Add an Impressum and privacy notice before publishing publicly.</small></div></footer>
 <div class="modal" id="modal" aria-hidden="true"><div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button id="closeModal" class="close" aria-label="Close">×</button><span class="eyebrow">THE CREATIVE ARCHIVE</span><h3 id="modalTitle"></h3><p id="modalDescription"></p><div id="modalMedia"></div></div></div><script src="version-b.js"></script></body></html>
