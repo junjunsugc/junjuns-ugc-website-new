@@ -105,9 +105,11 @@ function render() {
     lifestyle: 'Travel, Lifestyle & Food'
   };
 
-  const list = projects.filter(
-    p => filter === 'all' || p.category === filter
-  );
+  
+const list = filter === 'all'
+  ? projects.filter(p => p.featured === true).slice(0, 3)
+  : projects.filter(p => p.category === filter);
+
 
   $('#projects').innerHTML = list.length
     ? list.map(p => {
