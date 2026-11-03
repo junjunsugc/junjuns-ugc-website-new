@@ -268,32 +268,49 @@
   height: 19px;
 }
 
-/* COPY EMAIL */
+
+/* ELEGANT EMAIL STICKER */
 .contact-copy-email {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
-  overflow-wrap: anywhere;
-  font-size: 13px;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 12px 16px;
+  background: #fff5f9;
+  border: 2px solid #34313a;
+  border-radius: 14px;
+  box-shadow: 3px 3px 0 #e6a9c6;
+  max-width: 100%;
 }
 
+/* THIN ELEGANT FONT */
+.contact-copy-email span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  color: #493447;
+  overflow-wrap: anywhere;
+}
+
+/* PINK COPY BUTTON */
 .contact-copy-email button {
-  background: #fffaf5;
+  background: #f3bbd4;
   color: #34313a;
-  border: 2px solid;
-  border-color: #ffffff #69616e #69616e #ffffff;
-  border-radius: 8px;
-  padding: 6px 10px;
-  box-shadow: 2px 2px 0 #34313a;
+  border: 2px solid #34313a;
+  border-radius: 9px;
+  padding: 8px 11px;
+  box-shadow: 2px 2px 0 #806a7d;
+  font-size: 17px;
   cursor: pointer;
 }
 
-/* BOLDER RETRO BUTTON TEXT */
-.contact-content a.contact-btn {
-  font-family: "Trebuchet MS", sans-serif !important;
-  font-size: 14px !important;
-  font-weight: 900 !important;
-  letter-spacing: 0.4px;
+.contact-copy-email button:hover {
+  background: #eaa7c7;
+}
+
+.contact-copy-email button:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
