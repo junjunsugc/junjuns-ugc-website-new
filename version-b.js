@@ -19,6 +19,24 @@ const media = s => {
     : String(s).replace(/^\//, '');
 };
 
+
+const videoThumbnail = url => {
+  if (!url) return '';
+
+  // Generate a thumbnail at 5 seconds for Cloudinary videos
+  if (
+    url.includes('res.cloudinary.com/') &&
+    url.includes('/video/upload/')
+  ) {
+    return url
+      .replace('/video/upload/', '/video/upload/so_5/')
+      .replace(/\.mp4(?:\?.*)?$/i, '.jpg');
+  }
+
+  return '';
+};
+
+
 let projects = [];
 let filter = 'all';
 
@@ -116,6 +134,8 @@ function render() {
         const video = p.video || p.video_url || '';
         const directMP4 = /\.mp4(?:[?#]|$)/i.test(video);
         const cover = p.cover || p.image || '';
+        const thumbnail = videoThumbnail(video) || cover;
+
 
         let visual = '';
 
@@ -126,7 +146,9 @@ function render() {
               controls
               playsinline
               preload="metadata"
-              ${cover ? `poster="${escapeHTML(media(cover))}"` : ''}
+              
+              ${thumbnail ? `poster="${escapeHTML(media(thumbnail))}"` : ''}
+
             >
               <source
                 src="${escapeHTML(media(video))}"
