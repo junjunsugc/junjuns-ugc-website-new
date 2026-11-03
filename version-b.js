@@ -191,13 +191,9 @@ const list = filter === 'all'
     };
 
     
-video.addEventListener('loadedmetadata', () => {
-  detectOrientation();
 
-  if (video.duration > 5) {
-    video.currentTime = 5;
-  }
-});
+video.addEventListener('loadedmetadata', detectOrientation);
+
 
 
     if (video.readyState >= 1) {
