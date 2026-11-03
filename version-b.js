@@ -378,3 +378,21 @@ if (quoteForm) {
 
   calculateQuote();
 }
+
+async function copyContactEmail(button) {
+  const email = 'junjunsworldofficial@gmail.com';
+
+  try {
+    await navigator.clipboard.writeText(email);
+
+    button.textContent = 'COPIED! ✓';
+
+    setTimeout(() => {
+      button.textContent = 'COPY EMAIL ♡';
+    }, 2000);
+
+  } catch (error) {
+    window.prompt('Copy this email address:', email);
+  }
+}
+
