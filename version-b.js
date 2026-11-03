@@ -23,6 +23,7 @@ let projects = [];
 let filter = 'all';
 
 const menu = $('#menu');
+
 if (menu) {
   menu.onclick = () => $('#links').classList.toggle('show');
 }
@@ -105,10 +106,10 @@ function render() {
     lifestyle: 'Travel, Lifestyle & Food'
   };
 
-  
-const list = filter === 'all'
-  ? projects.filter(p => p.featured === true)
-  : projects.filter(p => p.category === filter);
+  // Show featured projects in Highlights
+  const list = filter === 'all'
+    ? projects.filter(p => p.featured === true)
+    : projects.filter(p => p.category === filter);
 
   $('#projects').innerHTML = list.length
     ? list.map(p => {
@@ -151,8 +152,10 @@ const list = filter === 'all'
         }
 
         const externalVideo = video && !directMP4
-          ? `<a class="textlink" href="${escapeHTML(media(video))}"
-                target="_blank" rel="noopener noreferrer">
+          ? `<a class="textlink"
+                href="${escapeHTML(media(video))}"
+                target="_blank"
+                rel="noopener noreferrer">
                 WATCH VIDEO ↗
              </a>`
           : '';
@@ -174,14 +177,11 @@ const list = filter === 'all'
             </div>
           </article>
         `;
-      
       }).join('')
     : '<p>No projects in this category yet.</p>';
 
-  // Detect orientation and generate a 5-second preview
+  // Automatically detect video orientation
   document.querySelectorAll('.portfolio-video').forEach(video => {
-    let previewReady = false;
-    let restarting = false;
 
     const detectOrientation = () => {
       if (!video.videoWidth || !video.videoHeight) return;
@@ -192,48 +192,24 @@ const list = filter === 'all'
           : 'vertical';
     };
 
-    video.addEventListener('loadedmetadata', () => {
-      detectOrientation();
-
-      if (Number.isFinite(video.duration) && video.duration > 5) {
-        video.currentTime = 5;
-      }
-    });
-
-    video.addEventListener('loadeddata', detectOrientation);
-    video.addEventListener('resize', detectOrientation);
-
-    video.addEventListener('seeked', () => {
-      if (!restarting && video.currentTime >= 4.9) {
-        previewReady = true;
-      }
-    });
-
-    video.addEventListener('play', async () => {
-      if (!previewReady || restarting) return;
-
-      previewReady = false;
-      restarting = true;
-      video.pause();
-
-      try {
-        video.currentTime = 0;
-
-        if (video.seeking) {
-          await new Promise(resolve => {
-            video.addEventListener('seeked', resolve, { once: true });
-          });
-        }
-
-        await video.play();
-      } catch (error) {
-        console.error('Playback error:', error);
-      } finally {
-        restarting = false;
-      }
-    });
+    video.addEventListener('loadedmetadata', detectOrientation);
 
     if (video.readyState >= 1) {
       detectOrientation();
     }
   });
+}
+
+document.querySelectorAll('.filter').forEach(button => {
+  button.onclick = () => {
+    filter = button.dataset.filter;
+
+    document.querySelectorAll('.filter').forEach(b => {
+      b.classList.toggle('active', b === button);
+    });
+
+    render();
+  };
+});
+
+load();
