@@ -124,7 +124,7 @@ const list = filter === 'all'
               class="portfolio-video"
               controls
               playsinline
-              preload="metadata"
+              preload="none"
               ${cover ? `poster="${escapeHTML(media(cover))}"` : ''}
             >
               <source
