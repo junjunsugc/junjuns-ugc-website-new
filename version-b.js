@@ -190,7 +190,15 @@ const list = filter === 'all'
           : 'vertical';
     };
 
-    video.addEventListener('loadedmetadata', detectOrientation);
+    
+video.addEventListener('loadedmetadata', () => {
+  detectOrientation();
+
+  if (video.duration > 5) {
+    video.currentTime = 5;
+  }
+});
+
 
     if (video.readyState >= 1) {
       detectOrientation();
