@@ -33,7 +33,7 @@ content:
     format: json
     filename: '{primary}.json'
     view:
-      fields: [title, category, published]
+      fields: [title, category, featured, published]
       primary: title
       sort: [title]
     fields:
@@ -68,6 +68,10 @@ content:
       - name: status
         label: Project Label
         type: string
+      - name: featured
+        label: Featured on All Work
+        type: boolean
+        default: false
       - name: published
         label: Show on Website
         type: boolean
