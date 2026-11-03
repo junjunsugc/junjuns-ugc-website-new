@@ -1,9 +1,10 @@
 {
   "title": "Dior GRWM",
   "category": "beauty",
+  "display_order": 6,
   "description": "A beauty-focused get ready with me video.",
   "video": "https://res.cloudinary.com/fbpxvjtr/video/upload/v1793734425/lv_0_20261016233549.mp4",
   "status": "GRWM",
-  "featured": false,
+  "featured": true,
   "published": true
 }
