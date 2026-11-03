@@ -179,22 +179,23 @@
               class="email-btn"
               href="mailto:junjunsworldofficial@gmail.com?subject=UGC%20Collaboration%20Inquiry"
             >
-              EMAIL ME ↗
+             
+EMAIL ME ↗
             </a>
 
-            <button
-              type="button"
-              class="copy-email-btn"
-              onclick="copyContactEmail(this)"
-            >
-              COPY EMAIL ♡
-            </button>
+            <div class="contact-copy-email">
+              <span>junjunsworldofficial@gmail.com</span>
+              <button
+                type="button"
+                onclick="copyContactEmail(this)"
+                title="Copy email"
+                aria-label="Copy email address"
+              >
+                ⧉
+              </button>
+            </div>
 
           </div>
-
-          <p class="contact-email-address">
-            junjunsworldofficial@gmail.com
-          </p>
 
           <a
             id="instagramLink"
@@ -216,6 +217,29 @@
 
   </div>
 </section>
+
+<footer>
+  <div class="shell">
+    <b>jun<span>juns</span>.ugc ✿</b>
+    <p>Munich, Germany · Beauty, cosplay, fashion & lifestyle UGC</p>
+    <small>© 2026 Junjuns UGC · Add an Impressum and privacy notice before publishing publicly.</small>
+  </div>
+</footer>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button id="closeModal" class="close" aria-label="Close">×</button>
+    <span class="eyebrow">THE CREATIVE ARCHIVE</span>
+    <h3 id="modalTitle"></h3>
+    <p id="modalDescription"></p>
+    <div id="modalMedia"></div>
+  </div>
+</div>
+
+<script src="version-b.js"></script>
+</body>
+</html>
+
 
 <footer><div class="shell"><b>jun<span>juns</span>.ugc ✿</b><p>Munich, Germany · Beauty, cosplay, fashion & lifestyle UGC</p><small>© 2026 Junjuns UGC · Add an Impressum and privacy notice before publishing publicly.</small></div></footer>
 <div class="modal" id="modal" aria-hidden="true"><div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button id="closeModal" class="close" aria-label="Close">×</button><span class="eyebrow">THE CREATIVE ARCHIVE</span><h3 id="modalTitle"></h3><p id="modalDescription"></p><div id="modalMedia"></div></div></div><script src="version-b.js"></script></body></html>
