@@ -1,0 +1,24 @@
+JUNJUNS UGC — CLEAN CREATIVE SCRAPBOOK (VERSION B)
+
+WHAT IS INCLUDED
+- A new six-section homepage: Home, About, Portfolio, Services, Rates, Contact.
+- Your original pages remain in the package as reference/extra pages.
+- Pages CMS project JSON files remain editable, including cover, video and video_url fields where configured.
+- The new website reads content/projects/*.json and content/site.json.
+- The media player supports MP4 landscape and portrait automatically; no Instagram embeds.
+
+PREVIEW
+Open index.html to inspect layout. Project cards load when served by a web server (such as Netlify), not necessarily by double-clicking the file.
+
+PUBLISH WITHOUT CREATING A DUPLICATE NETLIFY SITE
+1. Back up your existing GitHub repo.
+2. Upload the contents of this folder into the ROOT of your existing junjunsugc/junjuns-ugc-website GitHub repo, replacing matching files.
+3. Your existing Netlify project, if linked to this repo, redeploys automatically. Do not create a new Netlify site.
+4. If you want to test first, use a Git branch or local preview instead of committing to main.
+
+EDIT
+Use Pages CMS to update content/site.json and content/projects/*.json. For a cover photo, upload to assets and set cover. For videos, upload MP4 or use a direct MP4 / supported YouTube/Vimeo link in video_url. Instagram reels are linked out rather than embedded, avoiding Instagram popups.
+
+IMPORTANT
+This is an HTML/CSS/JS website, not a native editable Canva design. Canva cannot import HTML as fully editable website elements.
+Add your actual portrait, contact email, legal Impressum and privacy notice before publishing.
