@@ -3,6 +3,7 @@
   "category": "lifestyle",
   "description": "Cafe in Munich - Pastries from France",
   "video": "https://res.cloudinary.com/fbpxvjtr/video/upload/v1793734385/lv_0_20261012122255.mp4",
-  "status": "Shorts",
+  "status": "Cafe",
+  "featured": false,
   "published": true
 }
