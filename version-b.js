@@ -1,1 +1,192 @@
-const $=s=>document.querySelector(s);const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const media=s=>{if(!s)return '';return /^https?:\/\//i.test(s)?s:String(s).replace(/^\//,'')};let projects=[],filter='all';$('#menu').onclick=()=>$('#links').classList.toggle('show');document.querySelectorAll('#links a').forEach(a=>a.onclick=()=>$('#links').classList.remove('show'));async function load(){try{const r=await fetch('content/site.json');if(r.ok){const s=await r.json();if(s.hero_description)$('#heroDescription').textContent=s.hero_description;if(s.portrait){$('#heroPortrait').replaceChildren();const im=document.createElement('img');im.src=media(s.portrait);im.alt='Junjun portrait';$('#heroPortrait').append(im)}if(s.email)$('#emailButton').href='mailto:'+s.email;if(s.instagram)$('#instagramLink').href=s.instagram}}catch(e){}try{const r=await fetch('content/projects.json');if(!r.ok)throw Error('Missing project manifest');const ids=await r.json();projects=(await Promise.all(ids.map(async id=>{try{const q=await fetch('content/projects/'+encodeURIComponent(id)+'.json');return q.ok?{id,...await q.json()}:null}catch(e){return null}}))).filter(p=>p&&p.published!==false);render()}catch(e){$('#projects').innerHTML='<p>Project files load when hosted on Netlify. To preview locally, use a local web server.</p>'}}function render(){const emojis={beauty:'✿',fashion:'♡',lifestyle:'✧'};const labels={beauty:'Beauty & skincare',fashion:'Cosplay & fashion',lifestyle:'Travel & lifestyle'};const list=projects.filter(p=>filter==='all'||p.category===filter);$('#projects').innerHTML=list.length?list.map(p=>`<button class="project" data-id="${escapeHTML(p.id)}"><div class="project-image"><span class="tag">${escapeHTML(p.status||'Portfolio sample')}</span>${p.cover?`<img src="${escapeHTML(media(p.cover))}" alt="${escapeHTML(p.title)}" loading="lazy">`:`<span class="placeholder">${emojis[p.category]||'✿'}</span>`}</div><div class="project-body"><small>${labels[p.category]||'Creative UGC'}</small><h3>${escapeHTML(p.title)}</h3><p>${escapeHTML(p.description||'')}</p><span class="view">VIEW PROJECT ↗</span></div></button>`).join(''):'<p>No projects in this category yet.</p>';document.querySelectorAll('.project').forEach(b=>b.onclick=()=>openProject(projects.find(p=>p.id===b.dataset.id)))}document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('active',x===b));render()});function openProject(p){if(!p)return;$('#modalTitle').textContent=p.title;$('#modalDescription').textContent=p.description||'';const area=$('#modalMedia');area.replaceChildren();const wrap=document.createElement('div');wrap.className='mediawrap';if(p.video){const v=document.createElement('video');v.src=media(p.video);v.controls=true;v.playsInline=true;v.preload='metadata';wrap.append(v)}else if(p.video_url){const url=String(p.video_url).trim();let embed='';try{const u=new URL(url);if(/youtube\.com|youtu\.be/.test(u.hostname)){const id=u.hostname.includes('youtu.be')?u.pathname.slice(1):u.searchParams.get('v')||u.pathname.split('/').pop();if(/^[a-zA-Z0-9_-]{11}$/.test(id))embed='https://www.youtube-nocookie.com/embed/'+id}else if(/vimeo\.com/.test(u.hostname)){const id=u.pathname.match(/\d+/)?.[0];if(id)embed='https://player.vimeo.com/video/'+id}}catch(e){}if(embed){const f=document.createElement('iframe');f.src=embed;f.title=p.title;f.allow='autoplay; fullscreen; picture-in-picture';f.allowFullscreen=true;f.loading='lazy';wrap.append(f)}else if(/\.mp4(?:[?#]|$)/i.test(url)){const v=document.createElement('video');v.src=url;v.controls=true;v.playsInline=true;wrap.append(v)}else{const d=document.createElement('div');d.className='empty-media';d.textContent='Watch the video on its original platform';wrap.append(d);const a=document.createElement('a');a.className='external';a.href=url;a.target='_blank';a.rel='noopener';a.textContent='Open video ↗';area.append(a)}}else if(p.cover){const im=document.createElement('img');im.src=media(p.cover);im.alt=p.title;wrap.append(im)}else{const d=document.createElement('div');d.className='empty-media';d.textContent='Video coming soon ♡';wrap.append(d)}area.prepend(wrap);$('#modal').classList.add('open');$('#modal').setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}function close(){document.querySelectorAll('#modalMedia video').forEach(v=>v.pause());$('#modal').classList.remove('open');$('#modal').setAttribute('aria-hidden','true');document.body.style.overflow=''}$('#closeModal').onclick=close;$('#modal').onclick=e=>{if(e.target===$('#modal'))close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});load();
+
+const $ = s => document.querySelector(s);
+
+const escapeHTML = s => String(s ?? '').replace(
+  /[&<>"']/g,
+  c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }[c])
+);
+
+const media = s => {
+  if (!s) return '';
+  return /^https?:\/\//i.test(s)
+    ? s
+    : String(s).replace(/^\//, '');
+};
+
+let projects = [];
+let filter = 'all';
+
+const menu = $('#menu');
+if (menu) {
+  menu.onclick = () => $('#links').classList.toggle('show');
+}
+
+document.querySelectorAll('#links a').forEach(a => {
+  a.onclick = () => $('#links').classList.remove('show');
+});
+
+async function load() {
+  try {
+    const r = await fetch('content/site.json');
+
+    if (r.ok) {
+      const s = await r.json();
+
+      if (s.hero_description) {
+        $('#heroDescription').textContent = s.hero_description;
+      }
+
+      if (s.portrait) {
+        const portrait = $('#heroPortrait');
+        portrait.replaceChildren();
+
+        const img = document.createElement('img');
+        img.src = media(s.portrait);
+        img.alt = 'Junjun portrait';
+        portrait.append(img);
+      }
+
+      if (s.email) {
+        $('#emailButton').href = 'mailto:' + s.email;
+      }
+
+      if (s.instagram) {
+        $('#instagramLink').href = s.instagram;
+      }
+    }
+  } catch (e) {
+    console.error('Website settings:', e);
+  }
+
+  try {
+    const r = await fetch('content/projects.json');
+
+    if (!r.ok) throw Error('Missing project manifest');
+
+    const ids = await r.json();
+
+    projects = (await Promise.all(ids.map(async id => {
+      try {
+        const q = await fetch(
+          'content/projects/' + encodeURIComponent(id) + '.json'
+        );
+
+        return q.ok ? { id, ...await q.json() } : null;
+      } catch (e) {
+        return null;
+      }
+    }))).filter(p => p && p.published !== false);
+
+    render();
+  } catch (e) {
+    $('#projects').textContent = 'Unable to load projects.';
+    console.error(e);
+  }
+}
+
+function render() {
+  const emojis = {
+    beauty: '✿',
+    cosplay: '✦',
+    fashion: '♡',
+    lifestyle: '✧'
+  };
+
+  const labels = {
+    beauty: 'Beauty & Skincare',
+    cosplay: 'Cosplay & Creative',
+    fashion: 'Fashion & Styling',
+    lifestyle: 'Travel, Lifestyle & Food'
+  };
+
+  const list = projects.filter(
+    p => filter === 'all' || p.category === filter
+  );
+
+  $('#projects').innerHTML = list.length
+    ? list.map(p => {
+        const video = p.video || p.video_url || '';
+        const directMP4 = /\.mp4(?:[?#]|$)/i.test(video);
+        const cover = p.cover || p.image || '';
+
+        let visual = '';
+
+        if (directMP4) {
+          visual = `
+            <video
+              class="portfolio-video"
+              controls
+              playsinline
+              preload="metadata"
+              ${cover ? `poster="${escapeHTML(media(cover))}"` : ''}
+            >
+              <source
+                src="${escapeHTML(media(video))}"
+                type="video/mp4"
+              >
+              Your browser does not support video playback.
+            </video>
+          `;
+        } else if (cover) {
+          visual = `
+            <img
+              src="${escapeHTML(media(cover))}"
+              alt="${escapeHTML(p.title)}"
+              loading="lazy"
+            >
+          `;
+        } else {
+          visual = `
+            <span class="placeholder">
+              ${emojis[p.category] || '✿'}
+            </span>
+          `;
+        }
+
+        const externalVideo = video && !directMP4
+          ? `<a class="textlink" href="${escapeHTML(media(video))}"
+                target="_blank" rel="noopener noreferrer">
+                WATCH VIDEO ↗
+             </a>`
+          : '';
+
+        return `
+          <article class="project">
+            <div class="project-image">
+              <span class="tag">
+                ${escapeHTML(p.status || 'Portfolio sample')}
+              </span>
+              ${visual}
+            </div>
+
+            <div class="project-body">
+              <small>${labels[p.category] || 'Creative UGC'}</small>
+              <h3>${escapeHTML(p.title)}</h3>
+              <p>${escapeHTML(p.description || '')}</p>
+              ${externalVideo}
+            </div>
+          </article>
+        `;
+      }).join('')
+    : '<p>No projects in this category yet.</p>';
+}
+
+document.querySelectorAll('.filter').forEach(button => {
+  button.onclick = () => {
+    filter = button.dataset.filter;
+
+    document.querySelectorAll('.filter').forEach(b => {
+      b.classList.toggle('active', b === button);
+    });
+
+    render();
+  };
+});
+
+load();
