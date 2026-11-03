@@ -64,3 +64,14 @@
     grid-column: span 1;
   }
 }
+
+/* Slightly smaller horizontal video */
+
+@media (min-width: 901px) {
+  .projects .project:has(
+    .portfolio-video[data-orientation="horizontal"]
+  ) {
+    width: 88%;
+    justify-self: start;
+  }
+}
