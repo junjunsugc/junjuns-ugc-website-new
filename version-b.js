@@ -29,7 +29,7 @@ const videoThumbnail = url => {
     url.includes('/video/upload/')
   ) {
     return url
-      .replace('/video/upload/', '/video/upload/so_5/')
+      .replace('/video/upload/', '/video/upload/so_2/')
       .replace(/\.mp4(?:\?.*)?$/i, '.jpg');
   }
 
