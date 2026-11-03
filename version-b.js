@@ -125,11 +125,16 @@ function render() {
     fashion: 'Fashion & Styling',
     lifestyle: 'Travel, Lifestyle & Food'
   };
-
-  // Show featured projects in Highlights
-  const list = filter === 'all'
+  
+  // Show projects in the order set in Pages CMS
+  const list = (filter === 'all'
     ? projects.filter(p => p.featured === true)
-    : projects.filter(p => p.category === filter);
+    : projects.filter(p => p.category === filter)
+  ).sort((a, b) => {
+    const orderA = Number(a.display_order ?? 99);
+    const orderB = Number(b.display_order ?? 99);
+    return orderA - orderB;
+  });
 
   $('#projects').innerHTML = list.length
     ? list.map(p => {
