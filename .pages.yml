@@ -13,15 +13,19 @@ content:
       - name: hero_label
         label: Homepage Greeting
         type: string
+
       - name: hero_description
         label: Homepage Introduction
         type: text
+
       - name: portrait
         label: Homepage Portrait
         type: image
+
       - name: email
         label: Contact Email
         type: string
+
       - name: instagram
         label: Instagram Link
         type: string
@@ -32,15 +36,18 @@ content:
     path: content/projects
     format: json
     filename: '{primary}.json'
+
     view:
-      fields: [title, category, featured, published]
+      fields: [title, category, display_order, featured, published]
       primary: title
       sort: [title]
+
     fields:
       - name: title
         label: Project Title
         type: string
         required: true
+
       - name: category
         label: Portfolio Category
         type: select
@@ -55,23 +62,35 @@ content:
               value: fashion
             - name: Travel, Lifestyle & Food
               value: lifestyle
+
+      - name: display_order
+        label: Portfolio Display Order
+        type: number
+        default: 99
+        description: Lower numbers appear first in All Work and category filters.
+
       - name: description
         label: Description
         type: text
+
       - name: cover
         label: Cover Photo
         type: image
+
       - name: video
         label: Video File or URL
         type: string
         description: Paste a direct HTTPS MP4 URL or an uploaded file path.
+
       - name: status
         label: Project Label
         type: string
+
       - name: featured
         label: Featured on All Work
         type: boolean
         default: false
+
       - name: published
         label: Show on Website
         type: boolean
