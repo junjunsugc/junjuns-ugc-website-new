@@ -28,3 +28,51 @@
   z-index: 2;
   pointer-events: none;
 }
+
+/* Mixed vertical and horizontal portfolio layout */
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.projects .project {
+  grid-column: span 1;
+  min-width: 0;
+}
+
+/* Horizontal videos take up two columns */
+.projects .project:has(.portfolio-video[data-orientation="horizontal"]) {
+  grid-column: span 2;
+}
+
+.project-image:has(.portfolio-video) {
+  height: auto;
+  aspect-ratio: auto;
+}
+
+.portfolio-video {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .projects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  .projects .project,
+  .projects .project:has(.portfolio-video[data-orientation="horizontal"]) {
+    grid-column: span 1;
+  }
+}
