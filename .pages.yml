@@ -44,8 +44,9 @@ content:
       - name: category
         label: Portfolio Category
         type: select
+        required: true
         options:
-          - label: Beauty
+          - label: Beauty & Skincare
             value: beauty
           - label: Cosplay & Fashion
             value: fashion
