@@ -403,3 +403,77 @@ async function copyContactEmail(button) {
     window.prompt('Copy this email address:', email);
   }
 }
+
+/* WHY WORK WITH ME — INTERACTIVE STEPS */
+(() => {
+  const steps = [
+    {
+      title: "Discover",
+      description:
+        "I get to know your brand, audience, product and campaign goals so we can create content with purpose."
+    },
+    {
+      title: "Concept",
+      description:
+        "I develop creative ideas, hooks, shot lists and a visual direction that fits your brand's personality."
+    },
+    {
+      title: "Create",
+      description:
+        "I bring the concept to life through intentional filming, thoughtful composition and authentic storytelling."
+    },
+    {
+      title: "Edit",
+      description:
+        "I bring everything together with transitions, pacing, sound and the finishing touches that make the story flow."
+    },
+    {
+      title: "Deliver",
+      description:
+        "Your finished content is ready for review and delivery in the agreed formats."
+    }
+  ];
+
+  function initializeProcess() {
+    const buttons = document.querySelectorAll(".wwm-step");
+    const title = document.getElementById("wwm-title");
+    const description = document.getElementById("wwm-description");
+    const count = document.getElementById("wwm-count");
+    const label = document.querySelector(".wwm-detail-label");
+    const next = document.getElementById("wwm-next");
+
+    if (!buttons.length || !title || !description || !next) return;
+
+    let current = 0;
+
+    function showStep(index) {
+      current = index;
+      title.textContent = steps[index].title;
+      description.textContent = steps[index].description;
+      count.textContent = `${index + 1} of 5`;
+      label.textContent = `STEP 0${index + 1} / 05`;
+
+      buttons.forEach((button, i) => {
+        button.classList.toggle("active", i === index);
+        button.setAttribute("aria-pressed", String(i === index));
+      });
+    }
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        showStep(Number(button.dataset.step));
+      });
+    });
+
+    next.addEventListener("click", () => {
+      showStep((current + 1) % steps.length);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeProcess);
+  } else {
+    initializeProcess();
+  }
+})();
+
