@@ -517,3 +517,118 @@
 .about-grid {
   grid-template-columns: 1fr;
 }
+
+/* COMPACT WHY WORK WITH ME SECTION */
+
+.wwm-section {
+  max-width: 950px;
+  margin: 45px auto;
+  padding: 0 20px;
+}
+
+.wwm-intro {
+  margin-bottom: 22px;
+}
+
+.wwm-intro h2 {
+  font-size: clamp(28px, 3vw, 38px);
+  margin: 8px 0;
+}
+
+.wwm-intro > p:last-child {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.wwm-window {
+  border-radius: 17px;
+  box-shadow: 6px 7px 0 #ebcfd7;
+}
+
+.wwm-window-bar {
+  padding: 11px 17px;
+  font-size: 13px;
+}
+
+.wwm-window-body {
+  padding: 18px;
+}
+
+.wwm-steps {
+  gap: 9px;
+}
+
+.wwm-step {
+  padding: 12px 5px;
+  gap: 5px;
+  border-radius: 11px;
+}
+
+.wwm-step > span {
+  font-size: 22px;
+}
+
+.wwm-step b {
+  font-size: 12px;
+}
+
+.wwm-step small {
+  font-size: 11px;
+}
+
+.wwm-detail {
+  margin-top: 14px;
+  padding: 17px 20px;
+  border-radius: 12px;
+}
+
+.wwm-detail-label {
+  font-size: 10px;
+}
+
+.wwm-detail h3 {
+  font-size: 19px;
+  margin-bottom: 5px;
+}
+
+.wwm-detail > p:not(.wwm-detail-label) {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.wwm-detail-footer {
+  margin-top: 12px;
+}
+
+#wwm-next {
+  padding: 8px 13px;
+  font-size: 12px;
+}
+
+@media (max-width: 650px) {
+  .wwm-section {
+    margin: 35px auto;
+    padding: 0 14px;
+  }
+
+  .wwm-window-body {
+    padding: 12px;
+  }
+
+  .wwm-step {
+    padding: 10px 2px;
+  }
+
+  .wwm-step > span {
+    font-size: 19px;
+  }
+
+  .wwm-step small {
+    font-size: 9px;
+  }
+
+  .wwm-detail {
+    padding: 14px;
+  }
+}
+
