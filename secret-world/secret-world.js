@@ -18,7 +18,39 @@
   function update(){document.getElementById('sw-count').textContent=`🔑 ${visited.size} / 5 Keys`;document.getElementById('sw-keys').textContent=rooms.map((_,i)=>visited.has(i)?'🔑':'◇').join(' ');buttons.forEach((b,i)=>{b.setAttribute('aria-pressed',String(i===active));b.querySelector('small').textContent=visited.has(i)?'✓ Key collected':'✧ Tap to explore'})}
   function openRoom(i){active=i;visited.add(i);const r=rooms[i];story.classList.remove('sw-finale');document.querySelector('.sw-story-head').textContent=`✿ MEMORY ${i+1} OF 5`;title.textContent=r.heading;copy.textContent=r.story;reward.textContent=`🔑 Collected: ${r.key}`;showPhoto(photoFiles[i]);next.textContent=visited.size===5?'✦ Unlock the final story':`Next room →`;update()}
   function finale(){active=-1;story.classList.add('sw-finale');document.querySelector('.sw-story-head').textContent='✦ ALL FIVE KEYS COLLECTED ✦';title.textContent='You found the real me! ♡';copy.textContent="Artist, makeup lover, cosplayer, traveler and storyteller. These little worlds come together in Junjuns UGC. Let's make something wonderful together!";reward.textContent='🏆 Achievement unlocked: Meet the Creator';showPhoto('welcome.jpg');next.textContent='Let’s create together ↗';update()}
-  next.addEventListener('click',()=>{if(story.classList.contains('sw-finale')){window.location.hash='contact';return}if(visited.size===5){finale();return}const n=rooms.findIndex((_,i)=>!visited.has(i));openRoom(n)});
-  document.getElementById('sw-restart').addEventListener('click',()=>{visited.clear();active=-1;story.classList.remove('sw-finale');document.querySelector('.sw-story-head').textContent='✿ YOUR ADVENTURE STARTS HERE';title.textContent='Welcome to my world ♡';copy.textContent='Click a room to discover a little piece of my story. Collect all five keys to unlock a special ending!';reward.textContent='✧ Five memories are waiting for you';showPhoto('welcome.jpg');next.textContent='Explore the Art Room →';update()});update();
+  
+next.addEventListener('click', () => {
+  if (story.classList.contains('sw-finale')) {
+    window.location.hash = 'contact';
+    return;
+  }
+  if (visited.size === 5) {
+    finale();
+    return;
+  }
+  const n = rooms.findIndex((_, i) => !visited.has(i));
+  openRoom(n);
+});
+
+document.getElementById('sw-restart').addEventListener('click', () => {
+  visited.clear();
+  active = -1;
+  story.classList.remove('sw-finale');
+  document.querySelector('.sw-story-head').textContent =
+    '✿ YOUR ADVENTURE STARTS HERE';
+  title.textContent = 'Welcome to my world ♡';
+  copy.textContent =
+    'Click a room to discover a little piece of my story. Collect all five keys to unlock a special ending!';
+  reward.textContent = '✧ Five memories are waiting for you';
+  showPhoto('welcome.jpg');
+  next.textContent = 'Explore the Art Room →';
+  update();
+});
+
+// Load the welcome photo when the game first opens
+showPhoto('welcome.jpg');
+update();
+
 })();
+
 
