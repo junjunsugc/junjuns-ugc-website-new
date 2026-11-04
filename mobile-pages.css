@@ -78,3 +78,12 @@
   body.mobile-pages .mobile-page-nav button:focus-visible {outline:3px solid #6b4b61 !important;outline-offset:2px;}
 }
 @media (min-width:768px) { .mobile-page-nav {display:none !important;} }
+
+/* Keep Netlify badge above mobile navigation */
+@media (max-width: 767px) {
+  .netlify-ribbon,
+  [data-netlify-badge] {
+    bottom: 100px !important;
+  }
+}
+
