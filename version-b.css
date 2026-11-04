@@ -632,3 +632,154 @@
   }
 }
 
+
+/* CREATIVE SERVICES + WHY WORK WITH ME
+   WIDER, SHORTER, MORE CONNECTED */
+
+/* Reduce gap between the two sections */
+.services {
+  padding-bottom: 18px;
+}
+
+.wwm-section {
+  max-width: 1140px;
+  margin: 0 auto 45px;
+  padding: 0 20px;
+}
+
+/* Smaller, closer heading */
+.wwm-intro {
+  max-width: 850px;
+  margin: 0 auto 18px;
+}
+
+.wwm-eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.wwm-intro h2 {
+  font-size: clamp(27px, 3vw, 35px);
+  margin: 5px 0 8px;
+}
+
+.wwm-intro > p:last-child {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Wider and flatter retro window */
+.wwm-window {
+  border-radius: 15px;
+  box-shadow: 6px 6px 0 #ebcfd7;
+}
+
+.wwm-window-bar {
+  padding: 9px 15px;
+  font-size: 12px;
+}
+
+.wwm-window-body {
+  padding: 13px 16px;
+}
+
+/* Five compact step cards */
+.wwm-steps {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.wwm-step {
+  padding: 9px 5px;
+  gap: 3px;
+  border-radius: 9px;
+  min-height: 0;
+}
+
+.wwm-step > span {
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.wwm-step b {
+  font-size: 11px;
+}
+
+.wwm-step small {
+  font-size: 10px;
+}
+
+/* Shorter detail box */
+.wwm-detail {
+  margin-top: 10px;
+  padding: 12px 17px;
+  border-radius: 10px;
+}
+
+.wwm-detail-label {
+  font-size: 9px;
+  margin-bottom: 4px;
+}
+
+.wwm-detail h3 {
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+.wwm-detail > p:not(.wwm-detail-label) {
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.wwm-detail-footer {
+  margin-top: 8px;
+  font-size: 11px;
+}
+
+#wwm-next {
+  padding: 6px 11px;
+  font-size: 11px;
+  border-radius: 9px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 650px) {
+  .services {
+    padding-bottom: 15px;
+  }
+
+  .wwm-section {
+    margin: 0 auto 35px;
+    padding: 0 14px;
+  }
+
+  .wwm-intro {
+    margin-bottom: 15px;
+  }
+
+  .wwm-window-body {
+    padding: 10px;
+  }
+
+  .wwm-steps {
+    gap: 4px;
+  }
+
+  .wwm-step {
+    padding: 9px 2px;
+  }
+
+  .wwm-step > span {
+    font-size: 15px;
+  }
+
+  .wwm-step small {
+    font-size: 9px;
+  }
+
+  .wwm-detail {
+    padding: 12px;
+  }
+}
