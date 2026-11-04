@@ -19,7 +19,7 @@
     all:revert;
     box-sizing:border-box !important;
     position:fixed !important;
-    inset:auto 0 75px 0 !important;
+    inset:76px 0 auto 0 !important;
     z-index:9999 !important;
     width:100% !important;
     height:auto !important;
@@ -34,7 +34,8 @@
     padding:10px 16px calc(10px + env(safe-area-inset-bottom)) !important;
     background:#fffdfb !important;
     border:0 !important;
-    border-top:1px solid #d9b4c5 !important;
+    border-top:0 !important;
+    border-bottom:1px solid #d9b4c5 !important;
     border-radius:0 !important;
     box-shadow:0 -4px 18px rgba(48,43,50,.09) !important;
     font-family:inherit !important;
