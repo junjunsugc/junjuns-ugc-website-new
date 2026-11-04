@@ -1,0 +1,27 @@
+/* Mobile-only page navigation. Desktop remains untouched. */
+@media (max-width: 767px) {
+  body.mobile-pages { overflow-x: hidden; padding-bottom: 78px; }
+  body.mobile-pages main > .section,
+  body.mobile-pages main > #quote-builder { display: none !important; }
+  body.mobile-pages main > .section.mobile-page-active { display: block !important; }
+  body.mobile-pages #rates #quote-builder { display: block !important; }
+  body.mobile-pages main > .section.mobile-page-active { min-height: calc(100dvh - 150px); }
+  body.mobile-pages .section { scroll-margin-top: 70px; }
+  body.mobile-pages .hero.section { min-height: 0; }
+  body.mobile-pages .sw-section { padding-top: 15px; padding-bottom: 20px; }
+  body.mobile-pages .sw-map { min-height: 0; }
+  body.mobile-pages .sw-room { min-height: 95px; }
+  body.mobile-pages .sw-story { min-height: 0; }
+  body.mobile-pages .mobile-page-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; display: flex; align-items: center; justify-content: space-between; gap: 9px; padding: 10px max(14px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left)); background: #fffdfb; border-top: 1px solid #d9b4c5; box-shadow: 0 -4px 18px #302b3215; font-family: inherit; }
+  body.mobile-pages .mobile-page-nav button { font: inherit; cursor: pointer; min-height: 42px; border-radius: 12px; border: 1px solid #b78396; background: #ebcfd7; color: #302b32; padding: 8px 12px; font-size: 13px; font-weight: 700; }
+  body.mobile-pages .mobile-page-nav button:disabled { opacity: .38; cursor: default; }
+  body.mobile-pages .mobile-page-status { text-align: center; min-width: 0; flex: 1; }
+  body.mobile-pages .mobile-page-name { font-weight: 700; font-size: 13px; color: #302b32; }
+  body.mobile-pages .mobile-page-count { font-size: 11px; color: #8b6578; margin-top: 3px; }
+  body.mobile-pages .mobile-page-dots { display: flex; justify-content: center; gap: 5px; margin-top: 5px; }
+  body.mobile-pages .mobile-page-dots button { width: 7px; height: 7px; min-height: 7px; padding: 0; border: 0; border-radius: 50%; background: #dfd1d8; }
+  body.mobile-pages .mobile-page-dots button[aria-current="step"] { background: #a97890; width: 17px; border-radius: 10px; }
+  body.mobile-pages .mobile-page-nav button:focus-visible { outline: 3px solid #6b4b61; outline-offset: 2px; }
+  body.mobile-pages main > footer { margin-bottom: 12px; }
+}
+@media (min-width: 768px) { .mobile-page-nav { display: none !important; } }
