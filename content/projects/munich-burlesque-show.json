@@ -1,6 +1,7 @@
 {
   "title": "Munich Burlesque Show",
   "category": "lifestyle",
+  "display_order": 2,
   "description": "Snippets of a show that you can't keep your eyes off",
   "video": "https://res.cloudinary.com/fbpxvjtr/video/upload/v1793737443/lv_0_20261024092055.mp4",
   "status": "Experience",
