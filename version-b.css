@@ -783,3 +783,217 @@
     padding: 12px;
   }
 }
+
+/* ==========================================
+   JUNJUNS CREATIVE STUDIO — COMBINED WINDOW
+   ========================================== */
+
+/* Unified retro window */
+.creative-studio-window {
+  max-width: 1140px;
+  margin: 28px auto 0;
+  overflow: hidden;
+  background: #fffdfb;
+  border: 2px solid #494047;
+  border-radius: 16px;
+  box-shadow: 7px 8px 0 #e5cbd6;
+}
+
+/* Retro title bar */
+.creative-studio-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 18px;
+  background: #ebcfd7;
+  border-bottom: 2px solid #494047;
+  color: #493442;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Inner content */
+.creative-studio-content {
+  padding: 20px;
+}
+
+/* Three service cards */
+.creative-studio-window .service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.creative-studio-window .service-grid article {
+  min-width: 0;
+  padding: 19px;
+  background: #faf4f7;
+  border: 1px solid #e7ceda;
+  border-radius: 12px;
+  box-shadow: none;
+  transform: none;
+}
+
+.creative-studio-window .service-grid article:hover {
+  transform: translateY(-3px);
+  box-shadow: 3px 4px 0 #ebcfd7;
+}
+
+.creative-studio-window .service-grid article > span {
+  color: #a3768b;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.creative-studio-window .service-grid h3 {
+  margin: 11px 0 8px;
+  font-size: 18px;
+  color: #302b32;
+}
+
+.creative-studio-window .service-grid p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.65;
+  color: #6c6469;
+}
+
+/* Process divider */
+.creative-process-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 21px 0 15px;
+  color: #a3768b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+}
+
+.creative-process-divider::before,
+.creative-process-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: #e7ceda;
+}
+
+/* Remove old nested window spacing */
+.creative-studio-window .wwm-window-body {
+  padding: 0;
+}
+
+/* Five compact process cards */
+.creative-studio-window .wwm-steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.creative-studio-window .wwm-step {
+  min-height: 0;
+  padding: 10px 5px;
+  gap: 4px;
+  border-radius: 9px;
+}
+
+.creative-studio-window .wwm-step > span {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.creative-studio-window .wwm-step b {
+  font-size: 11px;
+}
+
+.creative-studio-window .wwm-step small {
+  font-size: 10px;
+}
+
+/* Compact description box */
+.creative-studio-window .wwm-detail {
+  margin-top: 11px;
+  padding: 14px 17px;
+  border-radius: 10px;
+}
+
+.creative-studio-window .wwm-detail-label {
+  margin-bottom: 5px;
+  font-size: 9px;
+}
+
+.creative-studio-window .wwm-detail h3 {
+  margin: 0 0 5px;
+  font-size: 17px;
+}
+
+.creative-studio-window .wwm-detail > p:not(.wwm-detail-label) {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.creative-studio-window .wwm-detail-footer {
+  margin-top: 10px;
+}
+
+.creative-studio-window #wwm-next {
+  padding: 7px 12px;
+  font-size: 11px;
+}
+
+/* Mobile layout */
+@media (max-width: 650px) {
+  .creative-studio-window {
+    margin-top: 20px;
+  }
+
+  .creative-studio-bar {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .creative-studio-content {
+    padding: 13px;
+  }
+
+  .creative-studio-window .service-grid {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .creative-studio-window .service-grid article {
+    padding: 15px;
+  }
+
+  .creative-studio-window .service-grid h3 {
+    font-size: 16px;
+  }
+
+  .creative-process-divider {
+    margin: 18px 0 12px;
+    font-size: 9px;
+  }
+
+  .creative-studio-window .wwm-steps {
+    gap: 4px;
+  }
+
+  .creative-studio-window .wwm-step {
+    padding: 9px 2px;
+  }
+
+  .creative-studio-window .wwm-step > span {
+    font-size: 14px;
+  }
+
+  .creative-studio-window .wwm-step small {
+    font-size: 9px;
+  }
+
+  .creative-studio-window .wwm-detail {
+    padding: 12px;
+  }
+}
