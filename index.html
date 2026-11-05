@@ -207,7 +207,7 @@
         </select>
 
         
-<label for="quoteFormat">Creative Style</label><select id="quoteFormat"><option value="standard">Standard UGC (included)</option><option value="story">Detailed tutorial / demo (+€35/video)</option><option value="creative">Creative transformation / cosplay (+€75/video)</option></select><h3>02 / Usage Rights</h3>
+<p class="quote-note">Have a unique creative idea? Tell me about it in your project message below, and we can discuss the details and pricing by email.</p><h3>02 / Usage Rights</h3>
 
         <label for="quoteUsage">Advertising License</label>
         <select id="quoteUsage">
@@ -541,9 +541,9 @@ body.ugc-custom-mode #rates #ugcFixedTotal,body.ugc-custom-mode #rates #ugcSelec
  function calculate(){
    const v=n('quoteVideos'),p=n('quotePhotos');
    const videoRate=({'standard':180,'extended':230,'long':290}[$('quoteLength').value]||180); const base=v*videoRate+p*30;
-   const style=v*({'standard':0,'story':35,'creative':75}[$('quoteFormat').value]||0);
+
    const website=$('quotePlatforms').value==='website'?30:0;
-   const production=base+style+website;
+   const production=base+website;
    const license=production*(Number($('quoteUsage').value)||0);
    const extras=n('quoteHooks')*25+n('quoteRevisions')*20+(checked('quoteRaw')?v*60:0)+(checked('quoteSubtitles')?v*15:0);
    const rush=checked('quoteRush')?(production+license+extras)*.3:0;
@@ -572,7 +572,7 @@ body.ugc-custom-mode #rates #ugcFixedTotal,body.ugc-custom-mode #rates #ugcSelec
      submit.textContent='Request a Custom Quote ♡';
      const total=calculate();
      $('quoteAmount').value=String(Math.round(total));
-     $('quoteDetails').value='Custom: '+n('quoteVideos')+' videos, '+n('quotePhotos')+' photos; length '+$('quoteLength').selectedOptions[0].text+'; style '+$('quoteFormat').selectedOptions[0].text+'; organic '+$('quotePlatforms').selectedOptions[0].text+'; advertising '+$('quoteUsage').selectedOptions[0].text+'; extra hooks '+n('quoteHooks')+'; revisions '+n('quoteRevisions')+'; raw '+checked('quoteRaw')+'; subtitles '+checked('quoteSubtitles')+'; rush '+checked('quoteRush')+'; exclusivity '+checked('quoteExclusive')+'; creator ads '+checked('quoteCreatorAds')+'; estimate '+euro(total);
+     $('quoteDetails').value='Custom: '+n('quoteVideos')+' videos, '+n('quotePhotos')+' photos; length '+$('quoteLength').selectedOptions[0].text+'; organic '+$('quotePlatforms').selectedOptions[0].text+'; advertising '+$('quoteUsage').selectedOptions[0].text+'; extra hooks '+n('quoteHooks')+'; revisions '+n('quoteRevisions')+'; raw '+checked('quoteRaw')+'; subtitles '+checked('quoteSubtitles')+'; rush '+checked('quoteRush')+'; exclusivity '+checked('quoteExclusive')+'; creator ads '+checked('quoteCreatorAds')+'; estimate '+euro(total);
    }
  }
  function setMode(next){
